@@ -1,13 +1,16 @@
 package com.todotravel.turismo.service.implementation;
 
-import com.todotravel.turismo.model.Sale;
+import com.todotravel.turismo.model.*;
 import com.todotravel.turismo.repository.SaleRepository;
 import com.todotravel.turismo.service.abstraction.SaleService;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -25,6 +28,20 @@ public class SaleServiceImp implements SaleService {
 
     @Override
     public Sale create(Sale sale) {
+        return saleRepository.save(sale);
+    }
+
+    @Override
+    @Transactional
+    public Sale create() {
+        Sale sale = new Sale();
+        sale.setSaleDate(LocalDate.now());
+        sale.setSaleNumber(UUID.randomUUID().toString());
+        sale.setClient(new Client(1L));
+        sale.setEmployee(new Employee(1L));
+        TouristService hotel = new Hotel(1L);
+        sale.setTouristService(hotel);
+        sale.setPaymentMethod("CASH");
         return saleRepository.save(sale);
     }
 

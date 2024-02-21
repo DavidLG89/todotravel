@@ -13,11 +13,10 @@ import java.util.Date;
 @NoArgsConstructor
 @Setter
 @Getter
-@Inheritance(strategy = InheritanceType.JOINED)
 public class Client {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long clientId;
+    private Long id;
     private String firstName;
     private String lastName;
     private String address;
@@ -26,4 +25,8 @@ public class Client {
     private String nationality;
     private String cellphone;
     private String email;
+
+    public Client(Long clientId){
+        this.id = clientId;
+    }
 }

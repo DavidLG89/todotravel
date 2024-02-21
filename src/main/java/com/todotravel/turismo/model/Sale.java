@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -17,8 +18,9 @@ public class Sale {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long saleNumber;
-    private Date saleDate;
+    private Long id;
+    private String saleNumber;
+    private LocalDate saleDate;
     private String paymentMethod;
     @ManyToOne
     private Client client;
@@ -26,4 +28,6 @@ public class Sale {
     private TouristPackage touristPackage;
     @ManyToOne
     private Employee employee;
+    @ManyToOne
+    private TouristService touristService;
 }

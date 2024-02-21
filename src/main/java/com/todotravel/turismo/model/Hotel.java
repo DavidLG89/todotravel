@@ -14,4 +14,8 @@ import lombok.Setter;
 public class Hotel extends TouristService {
     private String roomType;
     private int stars;
+
+    public Hotel(Long id){
+        this.serviceCode = id;
+    }
 }
