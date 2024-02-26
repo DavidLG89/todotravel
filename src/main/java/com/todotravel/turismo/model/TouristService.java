@@ -1,12 +1,18 @@
 package com.todotravel.turismo.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-public abstract class TouristService {
+public class TouristService {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Long serviceCode;

@@ -12,6 +12,7 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class TouristServiceImp implements TouristServiceInt {
+
     private final TouristServiceRepository touristServiceRepository;
     @Override
     public TouristService getById(Long id) throws EntityNotFoundException {

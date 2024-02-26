@@ -12,7 +12,9 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class TouristPackageServiceImp implements TouristPackageService {
+
     private final TouristPackageRepository touristPackageRepository;
+
     @Override
     public TouristPackage getById(Long id) throws EntityNotFoundException {
         return touristPackageRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("El servicio de hotel con id: " + id + " no existe en base de datos"));
