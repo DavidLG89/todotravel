@@ -1,5 +1,8 @@
 package com.todotravel.turismo.controller;
 
+import com.todotravel.turismo.model.dto.request.AuthDTOReq;
+import com.todotravel.turismo.model.dto.response.AuthDTORes;
+import com.todotravel.turismo.service.abstraction.LoginService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class LoginController {
 
     @Autowired
-    private ILoginService loginService;
+    private LoginService loginService;
 
     /**
      * Metodo de logueo de usuario por email y contraseña, devuelve respuesta http con el token JWT
@@ -28,7 +31,7 @@ public class LoginController {
             summary = "Login de usuario",
             description = "Logueo de usuario por email y contraseña, y devuelve una respuesta http con un token JWT")
     @PostMapping("api/v1/login")
-    public ResponseEntity<AuthResponseDTORes> login(@RequestBody AuthRequestDTOReq authDTO){
+    public ResponseEntity<AuthDTORes> login(@RequestBody AuthDTOReq authDTO){
         return ResponseEntity.ok(loginService.authenticate(authDTO));
     }
 }

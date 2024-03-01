@@ -1,6 +1,6 @@
 package com.todotravel.turismo.config;
 
-import com.wallet.tienda.repository.ICustomerUserRepository;
+import com.todotravel.turismo.repository.EmployeeRepository;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
@@ -16,14 +16,17 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 /**
  * Clase de configuracion de beans necesarios para la app
+ *
  * @Autor David Ramon Thomen
  */
 @Configuration
 @RequiredArgsConstructor
 public class AppConfig {
-    private final ICustomerUserRepository userRepository;
+    private final EmployeeRepository employeeRepository;
+
     /**
      * Metodo que configura el bean encriptador de contraseña
+     *
      * @return encriptador de contraseña BCrypt
      */
     @Bean
@@ -33,15 +36,17 @@ public class AppConfig {
 
     /**
      * Metodo que configura el bean de busqueda de informacion de usuario necesario para spring security
+     *
      * @return UserDetails
      */
     @Bean
-    public UserDetailsService userDetailsService(){
-        return username -> userRepository.findByUsername(username).orElseThrow( () -> new UsernameNotFoundException("User not found"));
+    public UserDetailsService userDetailsService() {
+        return email -> employeeRepository.findByEmail(email).orElseThrow(() -> new UsernameNotFoundException("User not found"));
     }
 
     /**
      * Metodo que devuelve el proveedor de autenticacion configurado
+     *
      * @return AuthenticationProvider
      */
     @Bean
@@ -54,6 +59,7 @@ public class AppConfig {
 
     /**
      * Metodo para inyectar el administrador de autenticacion
+     *
      * @param config configuracion de autenticacion de spring security
      * @return AuthenticationManager administrador de autenticacion
      * @throws Exception excepcion arrojada si falla en traer el authentication manager
@@ -65,6 +71,7 @@ public class AppConfig {
 
     /**
      * Bean para mapear del modelo al DTO o del DTO al modelo
+     *
      * @return modelMapper mapeador de informacion de una clase a otra
      */
     @Bean

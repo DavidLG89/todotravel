@@ -12,7 +12,9 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class EmployeeServiceImp implements EmployeeService {
+
     private final EmployeeRepository employeeRepository;
+
     @Override
     public Employee getById(Long id) throws EntityNotFoundException {
         return employeeRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("El servicio de hotel con id: " + id + " no existe en base de datos"));
