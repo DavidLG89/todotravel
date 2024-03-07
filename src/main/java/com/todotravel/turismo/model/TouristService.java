@@ -12,6 +12,7 @@ import java.util.Date;
 @NoArgsConstructor
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
+
 public class TouristService {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
