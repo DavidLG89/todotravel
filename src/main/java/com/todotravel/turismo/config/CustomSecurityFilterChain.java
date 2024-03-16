@@ -45,13 +45,12 @@ public class CustomSecurityFilterChain {
                 .authorizeHttpRequests(auth ->
                         auth.requestMatchers("/api/v1/password/**", "/api/v1/login", "/swagger-ui/**", "/v3/api-docs/**")
                                 .permitAll())
-                .authorizeHttpRequests(auth ->
-                        auth.requestMatchers(
-                                "/api/v1/employees").hasAnyRole( "ADMIN")
+                /*.authorizeHttpRequests(auth ->
+                        auth.requestMatchers("/api/v1/employees", "/api/v1/hotel").hasAnyRole( "ADMIN")
 
-                )
+                )*/
                 .authorizeHttpRequests(auth ->
-                        auth.requestMatchers("/api/v1/users", "/api/v1/reports").hasRole("ADMIN")
+                        auth.requestMatchers("/api/v1/users", "/api/v1/hotels").hasRole("ADMIN")
                 )
                 .authorizeHttpRequests(
                         auth -> auth.anyRequest().authenticated()

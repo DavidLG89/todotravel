@@ -9,7 +9,6 @@ import lombok.Setter;
 @Getter
 @Setter
 @AllArgsConstructor
-@NoArgsConstructor
 @Entity(name = "excursions")
 public class Excursion extends TouristService{
 

@@ -1,6 +1,7 @@
 package com.todotravel.turismo.controller;
 
-import com.todotravel.turismo.model.TouristPackage;
+import com.todotravel.turismo.model.dto.request.TouristPackageDTOReq;
+import com.todotravel.turismo.model.dto.response.TouristPackageDTORes;
 import com.todotravel.turismo.service.abstraction.TouristPackageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,12 +16,12 @@ public class TouristPackageController {
     private TouristPackageService touristPackageService;
 
     @PostMapping()
-    public ResponseEntity<TouristPackage> createTouristPackage(@RequestBody TouristPackage touristPackage){
-        return new ResponseEntity<>(touristPackageService.create(touristPackage), HttpStatus.CREATED);
+    public ResponseEntity<TouristPackageDTORes> createTouristPackage(@RequestBody TouristPackageDTOReq touristPackageDTOReq){
+        return new ResponseEntity<>(touristPackageService.create(touristPackageDTOReq), HttpStatus.CREATED);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<TouristPackage> getTouristPackage(@PathVariable Long id){
+    public ResponseEntity<TouristPackageDTORes> getTouristPackage(@PathVariable Long id){
         return new ResponseEntity<>(touristPackageService.getById(id), HttpStatus.OK);
     }
 
